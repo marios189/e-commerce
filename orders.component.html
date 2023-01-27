@@ -1,0 +1,13 @@
+<br>
+<div class="container">
+    <div *ngIf="orders; else noOrder">
+        <ul *ngFor="let p of ordersByUser">
+            <li>Ordine n : {{p}}</li>
+        </ul>
+    </div>
+</div>
+
+<ng-template #noOrder>
+    Nessun ordine completato
+</ng-template>
+

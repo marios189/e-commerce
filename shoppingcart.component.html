@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary" (click)="(home())">
+                <i class='bx bx-home bx-sm' title="home"></i>
+            </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary" (click)="(profilo())">
+                <i class='bx bx-user-circle bx-sm' title="profile"></i>
+            </button>
+            </li>
+          </ul>
+        </div>
+        <div class="card-header text-center pluto">Shopping Cart</div>
+                <div class="card-body">
+                    <h5 class="card-title"> Articoli selezionati: </h5>
+                    <div *ngFor="let p of items">
+                      {{p.name}} {{p.price}},00€ <button class="btn btn-danger" (click)="removeFromCart(p)"><i class='bx bxs-trash' title="rimuovi"></i></button>
+                    </div>
+                    <hr>
+                    <h6 class="card-title">Totale: {{totale}},00€</h6>
+                        <button class="btn btn-light btn-block" (click)="open(checkout)" [disabled]="items!.length === 0">Checkout</button>
+                        <button class="btn btn-light btn-block" (click)="clearCart()" >Elimina tutto</button>
+                </div>
+        </div>
+        <ng-template #checkout let-modal>
+            <h4>Confermi di voler effettuare l'ordine?</h4>
+            <h6>Totale : {{totale}},00€</h6>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('ok click')" (click)="saveOrder()" (click)="open(ordineOk)">Conferma</button>
+            </div>
+        </ng-template>
+        <ng-template #ordineOk let-modal>
+          Congratulazioni!!!
+          <div class="modal-body">
+            <strong>Ordine effettuato correttamente</strong>
+          </div>
+        </ng-template>
+</div>
+

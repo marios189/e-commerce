@@ -1,0 +1,90 @@
+<form #home="ngForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h1 title="Sportswear">SPORTSWEAR</h1>
+            </div>
+        </div>
+        <div class="row">
+            <h6 class="sottotitolo">Il miglior sito per acquistare divise sportive</h6>
+        </div>
+        <div class="row" *ngIf="logged; else notLogged">
+            <div class="col-md offset-10">
+                <button type="button" class="btn btn-outline-success" (click)="openCart()">
+                    <i class='bx bxs-cart bx-md' title="carrello"></i>
+                </button>
+                <button class="btn btn-outline-success" (click)="(profilo())">
+                    <i class='bx bx-user-circle bx-md' title="profile"></i>
+                </button>
+                <button type="button" class="btn btn-outline-success" (click)="open(esci)">
+                    <i class='bx bx-exit bx-md' title="logout"></i>
+                </button>
+            </div>
+        </div>
+            <ng-template #notLogged>
+                <div class="row">
+                    <div class="col-md offset-9">
+                        <small class="form-text text-muted">Non hai un account?</small>
+                        <a href="/registration">
+                        <button type="button" class="btn btn-outline-success">Registrati</button>
+                        </a>
+                        <button type="button" class="btn btn-outline-success" (click)="open(login)">Login</button>
+                    </div>
+                </div>
+            </ng-template>
+    </div>
+    <br>
+</form>
+<ng-template #esci let-modal>
+    <h3>Vuoi effettuare il logout? </h3>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+        <button type="button" ngbAutofocus class="btn btn-danger" (click)="modal.dismiss('ok click')" (click)="logout()">Conferma</button>
+    </div>
+
+</ng-template>
+<ng-template #login let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title titolo" id="modal-basic-title">Accedi</h4>
+		<button type="button" class="btn-close btn btn-danger"  (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="form-row" >
+            <div class="col-md-4 offset-md-4">
+                <label for="inputUtente" >Username</label>
+                <input required type="text" class="form-control" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" #user="ngModel">
+                <div type="text" *ngIf="user.invalid && (user.touched || user.dirty)" class="alert alert-danger " role="alert">
+                    Inserire username
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 offset-md-4">
+                <label for="inputPassword" >Password</label>
+                <input required type="password" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" #pass="ngModel">
+                <div type="text" *ngIf="pass.invalid && (pass.touched || pass.dirty)" class="alert alert-danger" role="alert">
+                    Inserire password
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<div class="form-row">
+            <div class="text-center">
+                <button class="btn btn-outline-success" [disabled]="user.invalid || pass.invalid"  (click)="save()" (click)="open(loading)">Accedi</button>
+            </div>
+        </div>
+	</div>
+</ng-template>
+
+<ng-template #loading let-modal>
+    <div *ngIf="error; else accessoOk">
+        Credenziali errate ! Riprova
+    </div>
+</ng-template>
+
+<ng-template #accessoOk let-modal>
+    Loading ..
+</ng-template>
+<br>
+<app-product></app-product>

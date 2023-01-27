@@ -1,0 +1,57 @@
+<form>
+    <h1 class="text-center"> REGISTRAZIONE </h1>
+    <div class="form-row">
+        <div class="col-md-4 offset-md-4">
+            <label for="inputUtente">Username*</label>
+            <input required type="text" class="form-control" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" #user="ngModel">
+            <div type="text" *ngIf="user.invalid && (user.touched || user.dirty)" class="alert alert-danger " role="alert">
+                Inserire username
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 offset-md-4">
+            <label for="inputPassword">Password*</label>
+            <input required type="password" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" #pass="ngModel">
+            <div type="password" *ngIf="pass.invalid && (pass.touched || pass.dirty)" class="alert alert-danger" role="alert">
+                Inserire password
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 offset-md-4">
+            <label for="inputNome">Nome</label>
+            <input type="text" class="form-control" id="nomeUser" [(ngModel)]="nomeUser" [ngModelOptions]="{standalone : true}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 offset-md-4">
+            <label for="inputNome">Cognome</label>
+            <input type="text" class="form-control" id="cognomeUser" [(ngModel)]="cognomeUser" [ngModelOptions]="{standalone : true}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 offset-md-4">
+            <label for="inputNome">Data di Nascita</label>
+            <input type="date" class="form-control" id="dataDiNascita" [(ngModel)]="dataDiNascita" [ngModelOptions]="{standalone : true}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 offset-md-4">
+            <label for="inputNome">Indirizzo</label>
+            <input type="text" class="form-control" id="indirizzo" [(ngModel)]="indirizzo" [ngModelOptions]="{standalone : true}">
+        </div>
+    </div>
+    <br><br>
+    <div class="form-row">
+        <div class="text-center">
+            <button class="button" [disabled]="pass.invalid || user.invalid" (click)="nuovoUtente()" (click)="user.reset()" (click)="pass.reset()" (click)="open(registerOk)">
+                Registrati
+            </button>
+        </div>
+    </div>
+</form>
+
+<ng-template #registerOk let-modal>
+    Registrazione completata con successo
+</ng-template>

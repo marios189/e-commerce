@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md offset-md-9">
+            <h4>{{username}}</h4>
+        </div>
+        <div class="col-md">
+            <i class='bx bxs-user bx-lg'></i>
+            
+        </div>
+    </div>
+    <button class="btn btn-outline-secondary" (click)="(home())">
+        <i class='bx bx-home bx-sm' title="home"></i>
+    </button>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="profilo">DATI PERSONALI</h2>
+        </div>
+        <div class="card-body">
+            <table border="3" style="width:100%; height: 100%;" class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <br>
+                        <strong class="profilo">USERNAME</strong>
+                        <br>
+                        <strong>{{username}}</strong>
+                        <br>
+                    </tr>
+                    <tr>
+                        <br>
+                        <strong class="profilo">COGNOME</strong>
+                        <br>
+                        <strong>{{cognome}}</strong>
+                        <br>
+                    </tr>
+                    <tr>
+                        <br>
+                        <strong class="profilo">NOME</strong>
+                        <br>
+                        <strong>{{nome}}</strong>
+                        <br>
+                    </tr>
+                    <tr>
+                        <br>
+                        <strong class="profilo">DATA DI NASCITA</strong>
+                        <br>
+                        <strong>{{dataDiNascita}}</strong>
+                        <br>
+                    </tr>
+                    <tr>
+                        <br>
+                        <strong class="profilo">INDIRIZZO</strong>
+                        <br>
+                        <strong>{{indirizzo}}</strong>
+                    </tr>
+                    <br>
+                </tbody>
+            </table>
+            <br>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="profilo">ORDINI</h2>
+        </div>
+        <app-orders></app-orders>
+    </div>
+</div>

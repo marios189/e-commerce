@@ -1,0 +1,78 @@
+<div class="container">
+        <div class="row pippo">
+            <div class="col-md offset-md-8 theme">
+                <strong>FILTRA PER TAGLIA :</strong> 
+            </div>
+            <div class="col-md">
+                <select type="text" [(ngModel)]="size" id="sizeSelected">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <button type="button" (click)="cerca()" title="cerca" [disabled]="!size">
+                    <i class='bx bxs-search'></i>
+                </button>
+                <button type="button" title="reset filter" (click)="resetFilter()">
+                    <i class='bx bx-reset' ></i>
+                </button>
+            </div>
+          
+        </div>
+        <br>
+        <br>
+        <ng-template #notFiltered>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <h4>{{product.name}} Taglia {{product.size}}</h4>
+                        <div class="card-body">
+                            <a href="#"><img class="card-img-top" src={{product.pictureUrl}}
+                                alt="">
+                            </a>
+                            <br>
+                            <div class="row">
+                                <div class="col-md">
+                                    <button class="btn btn-primary btn-sm" (click)="addToCart(product)" (click)="open(added)">
+                                        <i class='bx bx-cart-add'> AGGIUNGI AL CARRELLO</i> <h4>{{product.price}},00€</h4>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </ng-template>
+
+    <div class="row" *ngIf="filtri; else notFiltered">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of prodottiFiltrati">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h4>{{product.name}} Taglia {{product.size}}</h4>
+                    <div class="card-body">
+                        <a href="#"><img class="card-img-top" src={{product.pictureUrl}}
+                            alt="">
+                        </a>
+                        <br>
+                        <div class="row">
+                            <div class="col-md">
+                                <button class="btn btn-primary" (click)="addToCart(product)" (click)="open(added)" >
+                                    <i class='bx bx-cart-add'> AGGIUNGI AL CARRELLO</i> <h4>€{{product.price}},00€</h4>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #added let-modal>
+        <div class="modal-body">
+            <p>Prodotto aggiunto correttamente al carrello ! </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.dismiss('Ok click')">OK</button>
+          </div>
+    </ng-template>
+</div>
